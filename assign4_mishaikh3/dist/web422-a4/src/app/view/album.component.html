@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-card-content fxLayout="row wrap" fxLayout.xs="column">
+        <div fxflex><img src="{{album[0].images[1].url}}" alt="album cover" [style.margin]="'10px'" [style.max-width]="'90%'" /></div>
+        <div fxFlex>
+            <div [style.min-width]="'300px'" [style.margin]="'10px'">
+                <strong>Record Label: </strong>{{album[0].label}}<br />
+                <strong>Release Date: </strong>{{album[0].release_date}}<br /><br />
+                <strong>Tracks:</strong>{{album[0].total_tracks}}<br />
+                <strong>Popularity: </strong>{{album[0].popularity}}<br /><br />
+
+                <mat-chip-list aria-label="Artist selection" *ngFor="let at of album[0].artists">
+                    <a routerLink="/artist">  <mat-chip>{{at.name}}</mat-chip></a>
+                </mat-chip-list>
+                <br />
+                
+                <div  *ngFor="let cr of album[0].copyrights">
+                    {{cr.text}}
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<br /><br />
+<h2>Track Listing</h2>
+
+<mat-list>
+    <!-- Single "Responsive" Material List Item-->
+    <mat-list-item *ngfor="let it of album[0].tracks.items">
+        <mat-icon mat-list-icon>queue_music</mat-icon>
+        <div mat-line>
+            <mat-card>
+                <mat-card-content>{{it.track_number}} : {{it.name}} - {{(it.duration_ms/60000).toFixed(2)}}<!-- NOTE 3.34 was determined by using (duration_ms / 60000).toFixed(2) -->
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-list-item>
+    <!-- -->
+</mat-list>

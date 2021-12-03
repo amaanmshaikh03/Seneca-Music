@@ -1,0 +1,28 @@
+<h1>{{albums[0].artists[0].name}}</h1>
+<p _ngcontent-pkk-c44="">Full discography for {{albums[0].artists[0].name}}
+<br _ngcontent-pkk-c44=""> Click the <strong _ngcontent-pkk-c44="">album cover</strong> for more information.
+</p>
+<mat-card
+    [style.background]="imagdis()"
+    [style.background-size]="'cover'" [style.height]="'450px'">
+</mat-card>
+<br /><br />
+<h1>Full Discography</h1>
+
+<div fxLayout="row wrap" fxLayout.xs="column">
+
+    <!-- Single "Responsive" Card-->
+    <div fxFlex [style.margin]="'20px'" *ngFor=" let ab of albums">
+        <mat-card [style.min-width]="'200px'">
+            <mat-card-header>
+                <mat-card-title>{{ab.name}}</mat-card-title>
+                <mat-card-subtitle>Album Title</mat-card-subtitle>
+            </mat-card-header>
+            <a routerLink="/album"><img mat-card-image class="album-cover" src="{{ab.images[0].url}}" alt="album art"></a>
+            <strong>Release Date: </strong>{{ab.release_date}}<br />
+            <strong>Tracks: </strong>{{ab.total_tracks}}
+        </mat-card>
+    </div>
+    <!-- -->
+
+</div>
